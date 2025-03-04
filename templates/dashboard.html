@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dashboard-page">
+    <div class="container">
+        <h2>Dashboard</h2>
+        <form method="post">
+            <input type="text" name="exercise" placeholder="Exercise Name" class="input-box">
+            <input type="number" name="duration" placeholder="Duration (min)" class="input-box">
+            <input type="number" name="calories" placeholder="Calories Burned" class="input-box">
+            <button type="submit" class="btn">Add Workout</button>
+        </form>
+        
+        <h3>Workout History</h3>
+        <div class="workout-box">
+            {% for workout in workouts %}
+                <p>{{ workout.exercise }} - {{ workout.duration }} min - {{ workout.calories }} kcal</p>
+            {% endfor %}
+        </div>
+
+        <a href="{{ url_for('logout') }}" class="btn">Logout</a>
+    </div>
+</body>
+</html>
